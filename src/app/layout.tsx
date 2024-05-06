@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+import Header from "@/components/app/Header";
+import Sidebar from "@/components/app/Sidebar";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +27,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="bg-red-50 overflow-hidden h-full grid">
+
+          <div className="row-auto"><Header /></div>
+
+          <div className="grid grid-cols-6 container row-auto">
+            <div className="hidden md:block md:col-span-1 sidebar"><Sidebar /></div>
+            <div className="col-span-5 p-3 text-base">{children}</div>
+          </div>
+        </div>
+
+        </body>
     </html>
   );
 }
